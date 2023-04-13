@@ -1,7 +1,7 @@
 {
-    "name": "3dera-tutorial-passo-4",
+    "name": "3dera-tutorial",
     "version": "1.0.0",
-    "description": "tutorial 3dera passo 4",
+    "description": "tutorial 3dera",
     "scripts": {
         "start": "npm run serve",
         "test": "echo \"Error: no test specified\" && exit 1",
