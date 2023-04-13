@@ -1,0 +1,89 @@
+ //-----MAIN LOOP
+ mainLoopPause(void)
+ mainLoopResume(void)
+
+
+//-----ENTITY
+ getEntity(name)
+ entityExists(entity)
+
+
+//-----Renderable
+ attachComponentRenderer(entity)
+ removeComponentRenderer(entity)
+
+
+//-----LOAD ASSETS
+ loadHassetsJson(string)
+ loadHAassetsArchive(string)
+ loadAssetsHpk(bin)
+
+
+ //-----CAMERA SETUP
+ setCameraProjectionPerspective(fildOfView, nearPlane, farPlane)
+ setCamerOrbitViewPitchLimits(min, max)
+    //---first person
+ setRotationCameraFirstPersonView( yaw,  pitch,  roll,  speed)
+ rotateCameraFirstPersonView( yaw,  pitch,  roll,  speed)
+ updateCameraFirstPersonView(smooth)
+ firstPersonViewSetPosition(x,y,z)
+ firstPersonViewWalk(t)
+ firstPersonViewStrafe(t)
+ firstPersonViewLift(t)
+      //---orbit
+ setTargetCameraOrbitView(x,y,z, distance)
+ translateCameraOrbitView(x,y, speed)
+ updateCameraOrbitView(void)
+      //---axis
+ getCameraYaw(void)
+ getCameraPitch(void)
+ getCameraRoll(void)
+
+
+//-----TRANSFORM
+ translate(entity, x,y,z)
+ setPosition(entity, x,y,z)
+ setSphericalPosition(entity, x,y, distance)
+ setSphericalPositionTarget(entity, x,y, target, distance)
+
+ getEntiyCameraAngleRad(entity)
+ getEntiyCameraAngleDeg(entity)
+
+ getEntiyEntityAngleRad(entity, entity)
+ getEntiyEntityAngleDeg(entity, entity)
+
+ rotate(entity, x,y,z)
+ setRotation(entity, x,y,z)
+ followView(entity)
+
+ scale(entity, x,y,z)
+ setScale(entity, x,y,z)
+
+
+//-----SPRITESHEET
+ spritesheetAnimate(entity, rowSize, time)
+ spritesheetAnimateRepeat(entity, rowSize, time)
+ spritesheetAnimateRow(entity, s, t, time)
+ spritesheetAnimateRowRepeat(entity s,  t, time)
+ spritesheetReset(entity)
+ setSprite(entity, rowSize, step)
+
+//-----SELECTION BY COLOR ID
+ enableOnScreenSelection(void)
+ selectOnScreen(entity, x, y)
+ searchOnScreen(x,y)
+
+
+//-----CHANGE COMPONENTS
+ changeComponentColor(entity, primitiveIndex, r,g,b,a)
+ changeComponentAlpha(entity, primitiveIndex, value)
+ changeComponentBaseColorTexture(entity, primitive, image)
+ changeComponentOrmTexture(entity, primitive, image)
+ changeComponentNormalTexture(entity, primitive, image)
+
+
+replaceImageTextureBase64(name, base64, linebreaks, alpha)
+replaceImageTextureBpm(name, src, int w, int h, int c, bool alpha)
+replaceImageTexture(name, src, alpha)
+replaceTextureWithHeightMap64(name, _base64, linebreaks, strength, alpha)
+replaceTextureWithHeightMap(name, src, strength, alpha)

@@ -1,0 +1,30 @@
+{
+    "assets": {
+        "images": [
+            {
+                "id": "enviroment_ibl",
+                "type": "panorama",
+                "ibl": "low",
+                "mask": 0,
+                "url": 0
+            }
+        ],
+        "glb": [
+            {
+                "url": 1
+            }
+        ],
+        "url": ["env.jpg", "AlarmClock.glb"]
+    },
+    "collectors": {
+        "rooms": [
+            {
+                "id": "enviroment",
+                "image_id": "enviroment_ibl",
+                "size": 100,
+                "mask": 0,
+                "renderable": false
+            }
+        ]
+    }
+}

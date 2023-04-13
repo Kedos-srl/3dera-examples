@@ -1,0 +1,27 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+#canvas {
+    width: 100%;
+    aspect-ratio: 16/9;
+    cursor: grab !important;
+}
+
+#canvas:active {
+    cursor: grabbing !important;
+}
+
+#indicator {
+    display: none;
+    position: absolute;
+    top: 50%;
+    width: 15vw;
+    pointer-events: none;
+}

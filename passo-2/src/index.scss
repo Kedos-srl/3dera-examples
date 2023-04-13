@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+#canvas {
+    width: 100%;
+    aspect-ratio: 16/9;
+    cursor: grab !important;
+}
+
+#canvas:active {
+    cursor: grabbing !important;
+}

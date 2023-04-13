@@ -1,0 +1,48 @@
+{
+    "assets": {
+        "images": [
+            {
+                "id": "enviroment_ibl",
+                "type": "panorama",
+                "ibl": "low",
+                "mask": 0,
+                "url": 0
+            },
+            {
+                "id": "click_here",
+                "type": "img",
+                "mask": 0,
+                "url": 2
+            }
+        ],
+        "glb": [
+            {
+                "url": 1
+            }
+        ],
+        "url": ["room_1_env_2k.jpg", "AlarmClock.glb", "click.png"]
+    },
+    "collectors": {
+        "rooms": [
+            {
+                "id": "enviroment",
+                "image_id": "enviroment_ibl",
+                "size": 100,
+                "mask": 0,
+                "renderable": true
+            }
+        ],
+        "widgets": [
+            {
+                "id": "click_here_widget",
+                "image_id": "click_here",
+                "size": [1, 1],
+                "distance": 0,
+                "position": [0, 0],
+                "off-scene": 1,
+                "mask": 1,
+                "renderable": true
+            }
+        ]
+    }
+}
