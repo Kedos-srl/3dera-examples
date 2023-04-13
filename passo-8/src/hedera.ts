@@ -4,6 +4,7 @@ export default class HederaJS {
     public static Hedera: IHedera = (window as { [key: string]: any })[
         "Hedera"
     ];
+    public static rect: any;
 
     private static mousedownHandlers: Function[] = [];
     private static mousemoveHandlers: Function[] = [];
@@ -20,7 +21,18 @@ export default class HederaJS {
                 HederaJS.Hedera = (window as { [key: string]: any })["Hedera"];
                 HederaJS.Hedera.update = () => {};
                 resolve(HederaJS.Hedera);
+                HederaJS.rect = canvas.getBoundingClientRect();
             });
+
+            window.addEventListener("resize", () => {
+                HederaJS.canvas.width =
+                    HederaJS.canvas.clientWidth * window.devicePixelRatio;
+                HederaJS.canvas.height =
+                    HederaJS.canvas.clientHeight * window.devicePixelRatio;
+                HederaJS.rect = canvas.getBoundingClientRect();
+            },
+                true
+            );
         });
     }
     public static async start() {
@@ -32,16 +44,6 @@ export default class HederaJS {
             var gl = HederaJS.canvas.getContext("webgl", {
                 premultipliedAlpha: false,
             });
-            // window.addEventListener(
-            //     "resize",
-            //     () => {
-            //         HederaJS.canvas.width =
-            //             HederaJS.canvas.parentElement!.clientWidth;
-            //         HederaJS.canvas.height =
-            //             HederaJS.canvas.parentElement!.clientHeight;
-            //     },
-            //     true
-            // );
 
             HederaJS.canvas.addEventListener("mousedown", (e: MouseEvent) => {
                 HederaJS.mousedownHandlers.forEach((mouseDownHandler) => {

@@ -175,7 +175,6 @@ HederaJS.init(canvas).then(() => {
             // widgets sveglia
             HederaJS.world.translate(entities.e[17], 1.325, 0.5, -1.2);
 
-            let rect = canvas.getBoundingClientRect();
             let currentMouseDragX = 0;
             let currentMouseDragY = 0;
             let lastMouseDragX = 0;
@@ -218,10 +217,10 @@ HederaJS.init(canvas).then(() => {
 
             canvas.addEventListener("click", function (e) {
                 // cattura le coordinate del mouse in base alle dimensioni del canvas
-                let scaleX = canvas.width / rect.width;
-                let scaleY = canvas.height / rect.height;
-                mouseClickX = (e.x - rect.left) * scaleX;
-                mouseClickY = (e.y - rect.top) * scaleY;
+                let scaleX = canvas.width / HederaJS.rect.width;
+                let scaleY = canvas.height / HederaJS.rect.height;
+                mouseClickX = (e.x - HederaJS.rect.left) * scaleX;
+                mouseClickY = (e.y - HederaJS.rect.top) * scaleY;
 
                 indexSelectedItem = entities.entitySelected(
                     mouseClickX,
@@ -246,10 +245,10 @@ HederaJS.init(canvas).then(() => {
                 mouseClickY = e.touches[0].clientY;
 
                 // cattura le coordinate del mouse in base alle dimensioni del canvas
-                let scaleX = canvas.width / rect.width;
-                let scaleY = canvas.height / rect.height;
-                mouseClickX = (e.touches[0].clientX - rect.left) * scaleX;
-                mouseClickY = (e.touches[0].clientY - rect.top) * scaleY;
+                let scaleX = canvas.width / HederaJS.rect.width;
+                let scaleY = canvas.height / HederaJS.rect.height;
+                mouseClickX = (e.touches[0].clientX - HederaJS.rect.left) * scaleX;
+                mouseClickY = (e.touches[0].clientY - HederaJS.rect.top) * scaleY;
 
                 indexSelectedItem = entities.entitySelected(
                     mouseClickX,
