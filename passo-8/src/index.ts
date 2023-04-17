@@ -14,7 +14,7 @@ HederaJS.init(canvas).then(() => {
             let startAlarm = () => {
                 alarmClockSound.play();
                 let maxRotation = -18;
-                idAnimation = setInterval(() => {
+                idGavelAnimation = setInterval(() => {
                     if (gavelRotation <= maxRotation) {
                         gavelRotation += 5;
                         maxRotation = 20;
@@ -23,7 +23,7 @@ HederaJS.init(canvas).then(() => {
                         maxRotation = -20;
                     }
                     HederaJS.world.setRotation(
-                        entities.e[6],
+                        gavel,
                         0,
                         0,
                         gavelRotation
@@ -34,9 +34,9 @@ HederaJS.init(canvas).then(() => {
             // funzione per fermare la sveglia
             let stopAlarm = () => {
                 alarmClockSound.pause();
-                clearInterval(idAnimation);
+                clearInterval(idGavelAnimation);
                 gavelRotation = 0;
-                HederaJS.world.setRotation(entities.e[6], 0, 0, gavelRotation);
+                HederaJS.world.setRotation(gavel, 0, 0, gavelRotation);
             };
 
             // CAMERA
@@ -55,125 +55,99 @@ HederaJS.init(canvas).then(() => {
             // permette la selezione degli oggetti nella scena
             HederaJS.world.enableOnScreenSelection();
 
-            class Entities {
-                e: any[] = [];
-
-                constructor() {
-                    this.e[0] = HederaJS.world.getEntity("face");
-                    this.e[1] = HederaJS.world.getEntity("hour_hand");
-                    this.e[2] = HederaJS.world.getEntity("minute_hand");
-                    this.e[3] = HederaJS.world.getEntity("second_hand");
-                    this.e[4] = HederaJS.world.getEntity("glass");
-                    this.e[5] = HederaJS.world.getEntity("bells");
-                    this.e[6] = HederaJS.world.getEntity("gavel");
-                    this.e[7] = HederaJS.world.getEntity("ring_back");
-                    this.e[8] = HederaJS.world.getEntity("ring_front");
-                    this.e[9] = HederaJS.world.getEntity("back");
-                    this.e[10] = HederaJS.world.getEntity("legs");
-                    this.e[11] = HederaJS.world.getEntity("washer");
-                    this.e[12] = HederaJS.world.getEntity("viti");
-                    this.e[13] = HederaJS.world.getEntity("alarm_hand");
-                    this.e[14] = HederaJS.world.getEntity("body");
-                    this.e[15] = HederaJS.world.getEntity("sveglia_prog");
-                    this.e[16] = HederaJS.world.getEntity("sveglia_on_off");
-                    this.e[17] = HederaJS.world.getEntity("click_here_widget");
-                }
-
-                entitySelected = (x: Number, y: Number) => {
-                    let hit = HederaJS.world.searchOnScreen(x, y);
-                    for (let i = 0; i < this.e.length; i++) {
-                        if (hit.id === this.e[i].id) {
-                            return i;
-                        }
-                    }
-                    return -1;
-                };
-            }
-
-            let entities = new Entities();
+            const hour_hand = HederaJS.world.getEntity("hour_hand");
+            const minute_hand = HederaJS.world.getEntity("minute_hand");
+            const second_hand = HederaJS.world.getEntity("second_hand");
+            const gavel = HederaJS.world.getEntity("gavel");
+            const back = HederaJS.world.getEntity("back");
+            const alarm_hand = HederaJS.world.getEntity("alarm_hand");
+            const body = HederaJS.world.getEntity("body");
+            const sveglia_prog = HederaJS.world.getEntity("sveglia_prog");
+            const sveglia_on_off = HederaJS.world.getEntity("sveglia_on_off");
+            const click_here_widget = HederaJS.world.getEntity("click_here_widget");
 
             // lancetta delle ore
             HederaJS.world.changeComponentColor(
-                entities.e[1],
+                hour_hand,
                 0,
-                50 / 255.0,
-                50 / 255.0,
-                50 / 255.0,
+                50 / 255,
+                50 / 255,
+                50 / 255,
                 1
             );
 
             // lancetta dei minuti
             HederaJS.world.changeComponentColor(
-                entities.e[2],
+                minute_hand,
                 0,
-                50 / 255.0,
-                50 / 255.0,
-                50 / 255.0,
+                50 / 255,
+                50 / 255,
+                50 / 255,
                 1
             );
 
             // lancetta dei secondi
             HederaJS.world.changeComponentColor(
-                entities.e[3],
+                second_hand,
                 0,
-                200 / 255.0,
-                0 / 255.0,
-                0 / 255.0,
+                200 / 255,
+                0 / 255,
+                0 / 255,
                 1
             );
 
             // retro della sveglia
             HederaJS.world.changeComponentColor(
-                entities.e[9],
+                back,
                 0,
-                50 / 255.0,
-                50 / 255.0,
-                50 / 255.0,
+                50 / 255,
+                50 / 255,
+                50 / 255,
                 1
             );
 
             // lancetta della sveglia
             HederaJS.world.changeComponentColor(
-                entities.e[13],
+                alarm_hand,
                 0,
-                50 / 255.0,
-                50 / 255.0,
-                50 / 255.0,
+                50 / 255,
+                50 / 255,
+                50 / 255,
                 1
             );
 
             // corpo della sveglia
             HederaJS.world.changeComponentColor(
-                entities.e[14],
+                body,
                 0,
-                200 / 255.0,
-                0 / 255.0,
-                0 / 255.0,
+                200 / 255,
+                0 / 255,
+                0 / 255,
                 1
             );
 
             // pomello destro
             HederaJS.world.changeComponentColor(
-                entities.e[15],
+                sveglia_prog,
                 0,
-                200 / 255.0,
-                0 / 255.0,
-                0 / 255.0,
+                200 / 255,
+                0 / 255,
+                0 / 255,
                 1
             );
 
             // pomello sinistro
             HederaJS.world.changeComponentColor(
-                entities.e[16],
+                sveglia_on_off,
                 0,
-                200 / 255.0,
-                0 / 255.0,
-                0 / 255.0,
+                200 / 255,
+                0 / 255,
+                0 / 255,
                 1
             );
 
             // widgets sveglia
-            HederaJS.world.translate(entities.e[17], 1.325, 0.5, -1.2);
+            HederaJS.world.translate(click_here_widget, 1.325, 0.5, -1.2);
 
             let currentMouseDragX = 0;
             let currentMouseDragY = 0;
@@ -181,14 +155,13 @@ HederaJS.init(canvas).then(() => {
             let lastMouseDragY = 0;
             let mouseClickX = 0;
             let mouseClickY = 0;
-            let indexSelectedItem = 0;
 
             // sveglia
             let alarmClockSound = document.getElementById(
                 "alarm-clock-sound"
             ) as HTMLAudioElement;
             let alarmBtn = false;
-            let idAnimation: any;
+            let idGavelAnimation: any;
             let gavelRotation = 0;
 
             // eventi
@@ -222,17 +195,14 @@ HederaJS.init(canvas).then(() => {
                 mouseClickX = (e.x - HederaJS.rect.left) * scaleX;
                 mouseClickY = (e.y - HederaJS.rect.top) * scaleY;
 
-                indexSelectedItem = entities.entitySelected(
-                    mouseClickX,
-                    mouseClickY
-                );
-                if (indexSelectedItem === 16) {
+                const selected = HederaJS.world.searchOnScreen(mouseClickX, mouseClickY);
+                if (selected.id === sveglia_on_off.id) {
                     alarmBtn = !alarmBtn;
                     if (alarmBtn) {
-                        HederaJS.world.translate(entities.e[16], 0, 0, 0.1);
+                        HederaJS.world.translate(sveglia_on_off, 0, 0, 0.1);
                         startAlarm();
                     } else {
-                        HederaJS.world.translate(entities.e[16], 0, 0, -0.1);
+                        HederaJS.world.translate(sveglia_on_off, 0, 0, -0.1);
                         stopAlarm();
                     }
                 }
@@ -250,17 +220,14 @@ HederaJS.init(canvas).then(() => {
                 mouseClickX = (e.touches[0].clientX - HederaJS.rect.left) * scaleX;
                 mouseClickY = (e.touches[0].clientY - HederaJS.rect.top) * scaleY;
 
-                indexSelectedItem = entities.entitySelected(
-                    mouseClickX,
-                    mouseClickY
-                );
-                if (indexSelectedItem === 16) {
+                const selected = HederaJS.world.searchOnScreen(mouseClickX, mouseClickY);
+                if (selected.id === sveglia_on_off.id) {
                     alarmBtn = !alarmBtn;
                     if (alarmBtn) {
-                        HederaJS.world.translate(entities.e[16], 0, 0, 0.1);
+                        HederaJS.world.translate(sveglia_on_off, 0, 0, 0.1);
                         startAlarm();
                     } else {
-                        HederaJS.world.translate(entities.e[16], 0, 0, -0.1);
+                        HederaJS.world.translate(sveglia_on_off, 0, 0, -0.1);
                         stopAlarm();
                     }
                 }
@@ -282,7 +249,7 @@ HederaJS.init(canvas).then(() => {
             // EDERA UPDATA
             HederaJS.onUpdate(() => {
                 // permette al widget di seguire la camera
-                HederaJS.world.followView(entities.e[17]);
+                HederaJS.world.followView(click_here_widget);
             });
         });
     });
